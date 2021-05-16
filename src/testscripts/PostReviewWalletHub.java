@@ -20,8 +20,12 @@ public class PostReviewWalletHub {
 	WalletHubLogin objSignIn;
 	WalletHubHome objHome;
 	WalletHubReview objReview;
-	String userName = "oikgrh@supersave.net";
+	String userName = "ffwwhifdjs@supersave.net";
 	String password = "walletHub@123";
+	String windowTitleReviewConfirmation = "WalletHub - Review Confirmation";
+	String headerTextReviewConfirmation = "Awesome!\n"
+			+ "Your review has been posted.";
+	String txtReviewAuthorField =" Your Review";
 	String randomReviewText = RandomStringUtils.randomAlphanumeric(200);
 
 	
@@ -73,6 +77,14 @@ public class PostReviewWalletHub {
 		
 		objReview.clickSubmitButton();
 		
+		//Verify Review Confirmation Screen
+		objReview.verifyReviewConfirmationScreen(headerTextReviewConfirmation,windowTitleReviewConfirmation);
+		
+		//Click on continue button
+		objReview.clickContinueButton();
+		
+		//Verify that your review is posted on the test insurance company page
+		objHome.verifyReviewAuthorField(txtReviewAuthorField);
 		
 	}
 

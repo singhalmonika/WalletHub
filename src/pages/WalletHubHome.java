@@ -21,6 +21,9 @@ public class WalletHubHome {
 	@FindBy(xpath = "//div[contains(@class,'review-action ')]//div[@class='rating-box-wrapper']/*[name()='svg']")
 	List<WebElement> reviewStars;
 	
+	@FindBy(xpath = "//span[@class='rvtab-ci-name']")
+	List<WebElement> reviewAuthorField;
+	
 
 	public WalletHubHome(WebDriver driver) {
 
@@ -64,6 +67,12 @@ public class WalletHubHome {
 	        	break;
 	        }
 		}
+	}
+
+	public void verifyReviewAuthorField(String txtReviewAuthorField) {
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOfAllElements(reviewAuthorField));
+		Assert.assertTrue(reviewAuthorField.get(0).getText().trim().contains(txtReviewAuthorField.trim()));	
 	}
 
 }

@@ -27,7 +27,7 @@ public class SignUpWalletHub {
 	@Test
 	public void f() throws InterruptedException {
 		objSignUp = new WalletHubSignUp(driver);
-		objSignUp.SignUpWalletHub("qngsjfnt@supersave.net", "walletHub@123");
+		objSignUp.SignUpWalletHub("ffwwhifdjs@supersave.net", "walletHub@123");
 		
 		}
 
