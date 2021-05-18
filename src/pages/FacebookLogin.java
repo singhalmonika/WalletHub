@@ -10,74 +10,58 @@ public class FacebookLogin {
 	WebDriver driver;
 
 	@FindBy(id = "email")
-
 	WebElement userName;
 
 	@FindBy(id = "pass")
-
 	WebElement password;
 
 	@FindBy(xpath = "//button[@data-testid='royal_login_button']")
-
 	WebElement login;
 
-	public FacebookLogin(WebDriver driver){
+	public FacebookLogin(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
 
-        this.driver = driver;
-
-        PageFactory.initElements(driver, this);
-
-    }
-
-	// Set user name in text box
-
+	/**
+	 * Set user name in text box
+	 * 
+	 * @param strUserName
+	 */
 	public void setUserName(String strUserName) {
-
 		userName.sendKeys(strUserName);
 	}
 
-	// Set password in password text box
-
+	/**
+	 * Set password in password text box
+	 * 
+	 * @param strPassword
+	 */
 	public void setPassword(String strPassword) {
-
 		password.sendKeys(strPassword);
 
 	}
 
-	// Click on login button
-
+	/**
+	 * Click on login button
+	 */
 	public void clickLogin() {
-
 		login.click();
-
 	}
 
 	/**
-	 * 
 	 * This method will login on Facebook
 	 * 
 	 * @param strUserName
-	 * 
 	 * @param strPasword
-	 * 
-	 * @return
-	 * 
 	 */
-
 	public void loginToFacebook(String strUserName, String strPasword) {
-
 		// Fill Username
-
 		this.setUserName(strUserName);
-
-		// Fill Password 
-
+		// Fill Password
 		this.setPassword(strPasword);
-
 		// Click Login button
-
 		this.clickLogin();
-
 	}
 
 }

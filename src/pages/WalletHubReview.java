@@ -31,55 +31,56 @@ public class WalletHubReview {
 	WebElement continueButton;
 
 	public WalletHubReview(WebDriver driver) {
-
 		this.driver = driver;
-
 		PageFactory.initElements(driver, this);
-
 	}
 
-	// Click on policy dropdown
-
+	/**
+	 * Click on policy dropdown
+	 */
 	public void clickPolicyDropdown() {
-
 		policyDropdown.click();
-
 	}
 
-	// Changing the value of dropdown to "Health Insurance"
-
+	/**
+	 * Changing the value of dropdown to "Health Insurance"
+	 */
 	public void selectValueHealthInsurance() {
 		dropdownValueSelect.click();
-
 	}
 
-	// Clicking on write a review link and write some Random Text
+	/**
+	 * Clicking on write a review link and write some Random Text
+	 * 
+	 * @param randomText
+	 */
 	public void clickWriteReviewLinkAndWriteRandomText(String randomText) {
-
 		writeReviewLink.click();
 		writeReviewLink.sendKeys(randomText);
-
 	}
 
-	// Click on submit button
-
+	/**
+	 * Click on submit button
+	 */
 	public void clickSubmitButton() {
-
 		submitButton.click();
-
 	}
 
-	// Click on continue button
-
+	/**
+	 * Click on continue button
+	 */
 	public void clickContinueButton() {
-
 		continueButton.click();
-
 	}
 
+	/**
+	 * Verify the confirmation screen after review submission
+	 * 
+	 * @param headerTextReviewConfirmation
+	 * @param windowTitleReviewConfirmation
+	 */
 	public void verifyReviewConfirmationScreen(String headerTextReviewConfirmation,
 			String windowTitleReviewConfirmation) {
-
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(headerTextReview));
 		Assert.assertEquals(headerTextReview.getText().trim(), headerTextReviewConfirmation.trim());

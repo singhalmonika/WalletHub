@@ -20,59 +20,60 @@ public class WalletHubHome {
 
 	@FindBy(xpath = "//div[contains(@class,'review-action ')]//div[@class='rating-box-wrapper']/*[name()='svg']")
 	List<WebElement> reviewStars;
-	
+
 	@FindBy(xpath = "//span[@class='rvtab-ci-name']")
 	List<WebElement> reviewAuthorField;
-	
 
 	public WalletHubHome(WebDriver driver) {
-
 		this.driver = driver;
-
 		PageFactory.initElements(driver, this);
-
 	}
 
-	// Click on Login button on Navbar
-
+	/**
+	 * Click on Login button on Navbar
+	 */
 	public void clickNavbarLoginButton() {
 		navbarloginButton.click();
 
 	}
-	
-	/** This method will perform following actions
-	 * Do the hover 
-	 * Make sure the stars inside get lit up when you hover over them
-	 * click on the fourth star
+
+	/**
+	 * This method will perform following actions Do the hover Make sure the stars
+	 * inside get lit up when you hover over them click on the fourth star
 	 */
-	
 	public void hoverClickFourthStar() {
-		
+
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfAllElements(reviewStars));
-		
-		for(int i=0;i<reviewStars.size();i++) {
+
+		for (int i = 0; i < reviewStars.size(); i++) {
 			Actions action = new Actions(driver);
-			
-			//Hovering over the stars
-	        action.moveToElement(reviewStars.get(i)).perform();
-	        
-	
-	         //Assertion for checking that stars are getting lit on hover
-	        Assert.assertEquals(reviewStars.get(i).findElement(By.xpath("./*[name()='g']/*[name()='path'][2]")).getCssValue("stroke"),"rgb(74, 224, 225)","The color of the stroke shoud be blue when star is lit");
-	       
-	        // Clicking on the fourth star
-	        if(i==3) {
-	        	action.moveToElement(reviewStars.get(i)).click().perform();
-	        	break;
-	        }
+
+			// Hovering over the stars
+			action.moveToElement(reviewStars.get(i)).perform();
+
+			// Assertion for checking that stars are getting lit on hover
+			Assert.assertEquals(reviewStars.get(i).findElement(By.xpath("./*[name()='g']/*[name()='path'][2]"))
+					.getCssValue("stroke"), "rgb(74, 224, 225)",
+					"The color of the stroke shoud be blue when star is lit");
+
+			// Clicking on the fourth star
+			if (i == 3) {
+				action.moveToElement(reviewStars.get(i)).click().perform();
+				break;
+			}
 		}
 	}
 
+	/**
+	 * Verify the author of the review
+	 * 
+	 * @param txtReviewAuthorField
+	 */
 	public void verifyReviewAuthorField(String txtReviewAuthorField) {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfAllElements(reviewAuthorField));
-		Assert.assertTrue(reviewAuthorField.get(0).getText().trim().contains(txtReviewAuthorField.trim()));	
+		Assert.assertTrue(reviewAuthorField.get(0).getText().trim().contains(txtReviewAuthorField.trim()));
 	}
 
 }

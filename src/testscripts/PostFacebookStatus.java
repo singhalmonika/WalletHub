@@ -12,11 +12,10 @@ import org.testng.annotations.AfterTest;
 
 public class PostFacebookStatus {
 	String driverPath = "chromedriver";
-	
-	//Please provide your username and password for testing
-	
-	String userName = " ";
-	String password = " ";
+
+	// Please provide your username and password for testing
+	String userName = "";
+	String password = "";
 	String faceBookStatus = "Hello World";
 
 	WebDriver driver;
@@ -41,18 +40,16 @@ public class PostFacebookStatus {
 		objLogin.loginToFacebook(userName, password);
 		objStatus = new FacebookStatus(driver);
 
-		/**
-		 * Calling post status message of Facebook Status Class to post Status message
-		 * "Hello World" on Facebook
-		 */
+		// Calling post status message of Facebook Status Class to post Status message
+		// "Hello World" on Facebook
 		objStatus.postStatusMessage(faceBookStatus);
 
 	}
 
 	@AfterTest
 	public void teardown() {
-		  driver.close();
-		  driver.quit();
+		driver.close();
+		driver.quit();
 	}
 
 }
